@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Photoshop</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="photoeditor.js"></script>
+</head>
+
+<body>
+    <div class="img-tool-wrapper">
+        <!--    Image section    -->
+        <div class="imgfield">
+            <canvas id="canvas"></canvas>
+        </div>
+        
+        <!--    Toolbar section    -->
+        <div class="toolfield">
+            <div class="tool-content">
+                
+                <!--    Choose file    -->
+                <p class="toolfield-titles">Datei wählen</p>
+                <input type="file" id="hochladen" />
+                <button id="download" onClick="download()">Download</button>
+                <!--    Reset    -->
+                <div>
+                    <button type="button" id="reset-button" onClick="reset()">Reset</button>
+                </div>
+
+                <!--    Brightness    -->
+                <p class="toolfield-titles">Helligkeit</p>
+                <div class="slide">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                    <input type="range" id="brightness-slider" min="-255" max="255" value="0" step=1 onchange="makeBrigther()">
+                    <span id="brightness-value">0</span>
+                </div>
+
+                <!--    Contrast    -->
+                <p class="toolfield-titles">Kontrast</p>
+                <div class="slide">
+                    <i class="fa fa-adjust" aria-hidden="true"></i>
+                    <input type="range" id="contrast-slider" min="-255" max="255" value="0" onchange="makeContrast()">
+                    <span id="contrast-value">0</span>
+                </div>
+
+                <!--    Grauwertbild    -->
+                <p class="toolfield-titles">Grauwertbild</p>
+                <div>
+                    <button type="button" id="grauwert-button" onClick="makeGray()">Umwandeln</button>
+                </div>
+
+                <!--    Binärbild    -->
+                <p class="toolfield-titles">Schwarz-Weiß</p>
+                <div>
+                    <label for="input-schwellwert">Schwellwert: </label>
+                    <input type="number" id="input-schwellwert" value="255">
+                    <button type="button" id="sw-button" onClick="makeSW(document.getElementById('input-schwellwert').value)">Umwandeln</button>
+                </div>
+
+                <!--    Change rgb values    -->
+                <p class="toolfield-titles">Farbkorrektur</p>
+                <p>Rot</p>
+                <div class="slide">
+                    <input type="range" id="red-slider" min="0" max="255" value="0" step=1 onchange="makeRed()">
+                    <span id="red-value">0</span>
+                </div>
+                <p>Grün</p>
+                <div class="slide">
+                    <input type="range" id="green-slider" min="0" max="255" value="0" step=1 onchange="makeGreen()">
+                    <span id="green-value">0</span>
+                </div>
+                <p>Blau</p>
+                <div class="slide">
+                    <input type="range" id="blue-slider" min="0" max="255" value="0" step=1 onchange="makeBlue()">
+                    <span id="blue-value">0</span>
+                </div>
+
+                <!--    Farbhistogramm    -->
+                <p class="toolfield-titles">Farbhistogramm</p>
+                <canvas id="canvas-histogramm-red" class="canvas-histogramm-color" height="256" width="256"></canvas>
+                <button type="button" id="histogramm-red" onClick="makeHistogrammRed()">(Rot) Anzeigen</button>
+                
+                <canvas id="canvas-histogramm-green" class="canvas-histogramm-color" height="256" width="256"></canvas>
+                <button type="button" id="histogramm-green" onClick="makeHistogrammGreen()">(Grün) Anzeigen</button>
+                
+                <canvas id="canvas-histogramm-blue" class="canvas-histogramm-color" height="256" width="256"></canvas>
+                <button type="button" id="histogramm-blue" onClick="makeHistogrammBlue()">(Blau) Anzeigen</button>
+
+                <!--    Negativbild    -->
+                <p class="toolfield-titles">Negativbild</p>
+                <div>
+                    <button type="button" id="negativ-button" onClick="makeNegative()">Umwandeln</button>
+                </div>
+
+                <!--    Rotate    -->
+                <p class="toolfield-titles">Rotieren</p>
+                <div>
+                    <button type="button" id="rotieren-rechts-button" onClick="rotateRight()">Rotieren</button>
+                    <button type="button" id="rotieren-links-button" onClick="rotateLeft()">Rotieren</button>
+                </div>
+
+                <!--    Mirroring    -->
+                <p class="toolfield-titles">Spiegeln</p>
+                <div>
+                    <i class="fa fa-arrows-v" aria-hidden="true"></i>
+                    <button type="button" id="spiegeln-vertical-button" onClick="makeMirrorVertical()">Spiegeln</button>
+                    <i class="fa fa-arrows-h" aria-hidden="true"></i>
+                    <button type="button" id="spiegeln-horizontal-button" onClick="makeMirrorHorizontal()">Spiegeln</button>
+                </div>
+
+                <!--    Scaling    -->
+                <p class="toolfield-titles">Skalieren</p>
+
+                <!--    Blur effect    -->
+                <p class="toolfield-titles">Rausch Effekt</p>
+                <div>
+                    <button type="button" id="negativ-button" onClick="makeRausch()">Umwandeln</button>
+                </div>
+
+                <!--    Gaußfilter    -->
+                <p class="toolfield-titles">Gauß Filter</p>
+
+                <!--    Kantenerkennung    -->
+                <p class="toolfield-titles">Kantenerkennung</p>
+                <div>
+                    <button type="button" id="kantenerkennung-button" onClick="showOutlines()">Kantenerkennung</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    </script>
+</body></html>

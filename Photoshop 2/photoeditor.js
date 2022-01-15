@@ -21,7 +21,7 @@ function init() {
     const uploadImg = (e) => {
         reader.onload = () => {
             img.onload = () => {
-                canvas.width = img.height;
+                canvas.width = img.width;
                 canvas.height = img.height;
                 ctx.drawImage(img, (canvas.width - img.width) / 2, (canvas.height - img.height) / 2);
 

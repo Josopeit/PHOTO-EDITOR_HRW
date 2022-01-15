@@ -1,6 +1,7 @@
 var canvas;
 var ctx;
 var pix;
+var img;
 var pixDefault;
 var gray = false;
 var resetPicture;
@@ -16,7 +17,7 @@ function init() {
 
     /* Get Image from local files */
     const reader = new FileReader(); //create new filereader
-    const img = new Image(); //create new Image
+    img = new Image(); //create new Image
     const uploadImg = (e) => {
         reader.onload = () => {
             img.onload = () => {
@@ -381,26 +382,23 @@ function makeMirrorVertical() {
     }
     ctx.putImageData(pix2, 0, 0);
 }
+function rotateDegrees(degrees) {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+
+    tx.save();
+
+    ctx.translate(canvas.width/2,canvas.height/2);
+
+    ctx.rotate(degrees*Math.PI/180);
+
+    ctx.drawImage(img,-img.width/2,-img.width/2);
+
+    ctx.restore();
+}
 
 /* Rotation im Uhrzeigersinn */
 function rotateRight() {
-    var pix2 = ctx.createImageData(canvas.height, canvas.width);
-
-    var h = canvas.height;
-    var w = canvas.width;
-
-    for (let i = 0; i < w; i++) {
-        for (let j = 0; j < h * 4; j += 4) {
-            pix2.data[j + (h * 4 * i)] = pix.data[((h - j) * w * 4) + (i * 4)];
-            pix2.data[j + 1 + (h * 4 * i)] = pix.data[((h - j) * w * 4) + (i * 4) + 1];
-            pix2.data[j + 2 + (h * 4 * i)] = pix.data[((h - j) * w * 4) + (i * 4) + 2];
-            pix2.data[j + 3 + (h * 4 * i)] = pix.data[((h - j) * w * 4) + (i * 4) + 3];
-        }
-    }
-
-    canvas.height = w;
-    canvas.width = h;
-    ctx.putImageData(pix2, 0, 0);
+    rotateDegrees(90);
 }
 
 function getIndex(x, y, canvas) {
